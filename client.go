@@ -105,7 +105,8 @@ func (c *Client) newRequest(method, requestPath string, query url.Values, body i
 	}
 
 	if c.config.APIKey != "" {
-		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.config.APIKey))
+		//req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.config.APIKey))
+		req.Header.Add("cookie", fmt.Sprintf("opstrace.sid=%s", c.config.APIKey))
 	} else if c.config.OrgID != 0 {
 		req.Header.Add("X-Grafana-Org-Id", strconv.FormatInt(c.config.OrgID, 10))
 	}
